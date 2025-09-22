@@ -51,6 +51,32 @@ export class JeuRouter {
     }
   }
 
+  public redemarrerJeu(req: Request, res: Response, next: NextFunction) {
+    const nom = req.body.nom;
+
+    try {
+      // POST ne garantit pas que tous les paramètres de l'opération système sont présents
+      if (!nom) {
+        throw new InvalidParameterError('Le paramètre nom est absent');
+      }
+
+      // Invoquer l'opération système (du DSS) dans le contrôleur GRASP
+      const joueur = this._controleurJeu.redemarrerJeu();
+     
+      req.flash('info', `Jeux redemarrer`);
+      res.status(200)
+        .send({
+          message: 'Success',
+          status: res.status,
+        
+        });
+    } catch (error) {
+      // console.error(error);
+      this._errorCode500(error, req, res);
+    }
+  }
+
+
   /**
    * jouer une fois aux dés
    */
@@ -113,7 +139,9 @@ export class JeuRouter {
   init() {
     this._router.post('/demarrerJeu', this.demarrerJeu.bind(this)); // pour .bind voir https://stackoverflow.com/a/15605064/1168342
     this._router.get('/jouer/:nom', this.jouer.bind(this)); // pour .bind voir https://stackoverflow.com/a/15605064/1168342
-    this._router.get('/terminerJeu/:nom', this.terminerJeu.bind(this)); // pour .bind voir https://stackoverflow.com/a/15605064/1168342
+    this._router.get('/terminerJeu/:nom', this.terminerJeu.bind(this));
+    this._router.get('/redemarrerJeu/:nom', this.redemarrerJeu.bind(this));
+ 
   }
 
 }

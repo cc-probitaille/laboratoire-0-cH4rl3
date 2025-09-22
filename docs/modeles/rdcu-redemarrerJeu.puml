@@ -1,11 +1,12 @@
 @startuml
 
-title RDCU pour redemarer
-rectangle "Système" {
-  (Jouer aux dés) as JP #powderblue
-  (Redémarrer) as R #powderblue
- 
-}
- J -- JP
-  J -- R
+title RDCU pour redemarerJeu
+participant ":JeuDeDes" as c
+participant "joueurs: \nMap<String, Joueur>" as jm
+
+-> c : redemarrerJeu()
+c -> jm : clear()
+note right of c : Selon Contrôleur(JeuDeDes est en objet racine)
+note right of jm : Selon Expert
+  
 @enduml
