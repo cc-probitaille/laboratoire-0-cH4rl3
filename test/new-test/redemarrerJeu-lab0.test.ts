@@ -1,14 +1,18 @@
 import 'jest-extended';
 import { readFileSync } from 'fs';
 import path from 'path';
-import { Joueur } from '../../src/core/joueur';
+
 
 let content = ""
+ 
 beforeAll(async () => {
   const filename = path.join('test', 'routes', 'jeuRouter-redemarrerJeu-lab0.test.ts');
   content = readFileSync(filename, 'utf-8');
- let joueur1 = new Joueur('a');
- let joueur2 = new Joueur('b');
+
+
+
+ 
+
 });
 
 describe('redemarrerJeu.test.ts', () => {
@@ -21,9 +25,4 @@ describe('redemarrerJeu.test.ts', () => {
     expect(content.includes(".status).toBe(404)")).toBeTruthy();
   });
 
-  it("la maps de joueurs devrait être cleared", ()=>{
-    
-
-
-  })
 });
