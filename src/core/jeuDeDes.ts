@@ -36,8 +36,8 @@ export class JeuDeDes {
         return JSON.stringify(joueur);
     }
 
-    public redemarrerJeu(){
-             this._joueurs.clear();
+    public redemarrerJeu() {
+            this._joueurs.clear();
 
 
     }
