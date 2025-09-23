@@ -78,7 +78,7 @@ export class JeuDeDes {
         return JSON.stringify(resultat);
     }
 
-    // d'autres méthodes (des RDCU)
+
     brasser() {
         this._d1.brasser();
         this._d2.brasser();
