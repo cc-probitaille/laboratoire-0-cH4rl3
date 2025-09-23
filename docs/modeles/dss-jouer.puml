@@ -1,3 +1,4 @@
+
 @startuml
 skinparam style strictuml
 skinparam defaultfontname Verdana
@@ -10,7 +11,7 @@ participant ":Système" as s
 c->s : démarrerJeu(nom : String)
 loop pas terminé
     c->s : jouer(nom : String)
-    c<<--s : nom, total du lancer,  résultat (gagné ou perdu),\nnb de parties, nb de parties gagnées
+    c<<--s : nom, total du lancer, résultat (gagné ou perdu),\nnb de parties, nb de parties gagnées, v1,v2,v3
 end loop
 c->s : terminerJeu(nom :String)
 @enduml
