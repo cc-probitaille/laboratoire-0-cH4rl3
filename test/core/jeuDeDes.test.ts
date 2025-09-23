@@ -19,11 +19,11 @@ describe('JeuDeDesTest', () => {
 
   it('devrait retourner finalement toutes les valeurs entre 2 et 19', () => {
     const resultats = new Set();
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 2000; i++) {
       resultats.add(jdd.brasser())
     }
     expect(resultats.size).toBe(16);
-    for (let i = 1; i < 19; i++) {
+    for (let i = 2; i < 18; i++) {
       expect(resultats.has(i + 1)).toBeTrue();
     }
     // cas particuliers

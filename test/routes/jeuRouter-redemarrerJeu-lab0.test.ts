@@ -25,7 +25,7 @@ describe('GET /api/v1/jeu/redemarrerJeu', () => {
         expect(response.type).toBe('application/json');
     });
 
-    it('devrait vider la map des joueurs (postcondition)', async () => {
+    it('devrait vider la map des joueurs)', async () => {
         const res1 = await request.get(`/api/v1/jeu/jouer/${testNom1}`);
         expect(res1.status).toBe(404);
         expect(res1.body.error).toInclude("n'existe pas");

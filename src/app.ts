@@ -61,7 +61,7 @@ class App {
     });
 
     // Route pour classement (stats)
-    // Route pour classement (stats)
+
 router.get('/stats', (req, res, next) => {
   const joueurs: Array<any> = JSON.parse(jeuRoutes.controleurJeu.joueurs);
 
