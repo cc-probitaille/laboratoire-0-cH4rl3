@@ -4,6 +4,7 @@ import logger from 'morgan';
 import flash from 'express-flash-plus';
 
 import { jeuRoutes } from './routes/jeuRouter';
+import { Joueur } from './core/joueur';
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -60,16 +61,33 @@ class App {
     });
 
     // Route pour classement (stats)
-    router.get('/stats', (req, res, next) => {
-      res.render('stats',
-        // passer objet au gabarit (template) Pug
-        {
-          title: `${titreBase}`,
-          user: user,
-          // créer nouveau tableau de joueurs qui est trié par ratio
-          joueurs: JSON.parse(jeuRoutes.controleurJeu.joueurs)
-        });
-    });
+    // Route pour classement (stats)
+router.get('/stats', (req, res, next) => {
+  const joueurs: Array<any> = JSON.parse(jeuRoutes.controleurJeu.joueurs);
+
+  const joueursAvecRatio = joueurs
+    .map(j => {
+      const nbLancers = j.lancers;
+      const nbLancersGagnes = j.lancersGagnes;
+
+      const ratio = nbLancers > 0 ? nbLancersGagnes / nbLancers : 0;
+
+      return {
+        nom: j.nom,
+        lancers: nbLancers,
+        lancersGagnes: nbLancersGagnes,
+        ratio: ratio
+      };
+    })
+    .sort((a, b) => b.ratio - a.ratio);
+
+  res.render('stats', {
+    title: `${titreBase}`,
+    user: user,
+     joueurs: joueursAvecRatio 
+  });
+});
+
 
     // Route to login
     router.get('/signin', async function (req, res) {

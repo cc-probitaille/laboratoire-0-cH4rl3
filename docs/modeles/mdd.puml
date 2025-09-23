@@ -1,3 +1,4 @@
+
 @startuml MDD
 skinparam style strictuml
 skinparam ArrowThickness 2
@@ -13,8 +14,8 @@ class Dé {
   valeur : int
 }
 class JeuDeDés
-' associations
+
 Joueur "*" -down- "1" JeuDeDés : joue >
-Joueur "1" -right- "2" Dé : lance >
-JeuDeDés "1" -up- "2" Dé : inclut >
+Joueur "1" -right- "3" Dé : lance >
+JeuDeDés "1" -up- "3" Dé : inclut >
 @enduml
